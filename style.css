@@ -6,82 +6,54 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #1a1a2e;
-  color: #eee;
+  background: #fff;
+  color: #222;
+  padding: 20px;
 }
 
 header {
-  padding: 16px 24px;
-  background: #16213e;
+  margin-bottom: 20px;
 }
 
 header h1 {
-  font-size: 1.6rem;
-  color: #f0c040;
+  font-size: 1.5rem;
 }
 
 #spinner {
   text-align: center;
-  padding: 40px;
-  color: #aaa;
+  padding: 30px;
+  color: #888;
 }
 
 #cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 16px;
-  padding: 20px;
 }
 
 .card {
-  background: #16213e;
-  border-radius: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   overflow: hidden;
-  border: 1px solid #2a2a5a;
 }
 
 .card img {
   width: 100%;
-  height: 210px;
+  height: 200px;
   object-fit: cover;
-  background: #2a2a4a;
 }
 
 .card .info {
-  padding: 12px;
-  text-align: center;
+  padding: 10px;
 }
 
 .card h3 {
-  font-size: 0.95rem;
-  color: #f0c040;
-  margin-bottom: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
 }
 
 .card p {
-  font-size: 0.8rem;
-  color: #bbb;
-  margin: 3px 0;
-}
-
-.house-badge {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.Gryffindor { background: #740001; color: #ffd700; }
-.Slytherin  { background: #1a472a; color: #aaa; }
-.Hufflepuff { background: #ecb939; color: #222; }
-.Ravenclaw  { background: #0e1a40; color: #946b2d; }
-.other      { background: #444;    color: #ccc; }
-
-@media (max-width: 600px) {
-  #cards {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    padding: 12px;
-  }
+  font-size: 0.78rem;
+  color: #555;
+  margin: 2px 0;
 }
