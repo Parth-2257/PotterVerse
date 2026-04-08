@@ -1,63 +1,55 @@
-let allChar = [];
-let visibleCount = 21;
+let data = [];
+let favs = new Set();
 
-window.addEventListener("load", () => {
-  fetchCharacters();
-});
+const grid = document.getElementById('grid');
+const srch = document.getElementById('srch');
+const hse = document.getElementById('hse');
+const srt = document.getElementById('srt');
+const fcnt = document.getElementById('fav-count');
+const tbtn = document.getElementById('theme-btn');
 
-async function fetchCharacters() {
-  try {
-    const res = await fetch("https://hp-api.onrender.com/api/characters");
-    allChar = await res.json();
-    document.getElementById("spinner").style.display = "none";
-    showCards(allChar);
-  } catch (err) {
-    document.getElementById("spinner").textContent = "Failed to load. Try again later.";
-  }
+async function init() {
+  const res = await fetch('https://hp-api.onrender.com/api/characters');
+  const raw = await res.json();
+  data = raw.filter(c => c.image !== "");
+  render();
 }
 
+function render() {
+  const q = srch.value.toLowerCase();
+  const h = hse.value;
+  const s = srt.value;
 
-function showCards(list) {
-  const container = document.getElementById("cards");
-  container.innerHTML = "";
+  const filtered = data
+    .filter(c => c.name.toLowerCase().includes(q))
+    .filter(c => h === 'all' || c.house === h)
+    .sort((a, b) => s === 'az' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name));
 
-  if (list.length === 0) {
-    container.innerHTML = "<p>No characters found.</p>";
-    return;
-  }
-
-  const toShow = list.slice(0, visibleCount);
-
-  toShow.forEach((char) => {
-    if (!char.image) return;
-
-    const card = document.createElement("div");
-    card.className = "card";
-
-    card.innerHTML = `
-      <img src="${char.image}" alt="${char.name}" loading="lazy" />
-      <div class="info">
-        <h3>${char.name}</h3>
-        <p>${char.house || "Unknown House"}</p>
-        <p>🦌 ${char.patronus || "No patronus"}</p>
-        <p>🪄 ${char.wand?.wood || "?"} / ${char.wand?.core || "?"}</p>
+  grid.innerHTML = filtered.length ? filtered.map(c => `
+    <div class="card">
+      <div class="heart ${favs.has(c.name) ? 'active' : ''}" onclick="toggleFav('${c.name.replace(/'/g, "\\'")}')">
+        ${favs.has(c.name) ? '❤️' : '♡'}
       </div>
-    `;
-
-    container.appendChild(card);
-  });
-
-  const oldBtn = document.getElementById("show-more");
-  if (oldBtn) oldBtn.remove();
-
-  if (visibleCount < list.length) {
-    const btn = document.createElement("button");
-    btn.id = "show-more";
-    btn.textContent = "Show More";
-    btn.addEventListener("click", () => {
-      visibleCount += 21;
-      showCards(list);
-    });
-    document.body.appendChild(btn);
-  }
+      <img src="${c.image}" alt="${c.name}">
+      <div class="info">
+        <h3>${c.name}</h3>
+        <p>${c.house || 'Unknown'}</p>
+      </div>
+    </div>
+  `).join('') : '<p>No characters found.</p>';
 }
+
+function toggleFav(name) {
+  favs.has(name) ? favs.delete(name) : favs.add(name);
+  fcnt.innerText = `❤️ ${favs.size}`;
+  render();
+}
+
+tbtn.onclick = () => {
+  document.body.classList.toggle('dark');
+  tbtn.innerText = document.body.classList.contains('dark') ? '☀️' : '🌙';
+};
+
+[srch, hse, srt].forEach(el => el.oninput = render);
+
+init();

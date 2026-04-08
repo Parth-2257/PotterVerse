@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PotterVerse</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PotterVerse | 105 Characters</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header>
     <h1>⚡ PotterVerse</h1>
+    <div class="h-right">
+      <span id="fav-count">❤️ 0</span>
+      <button id="theme-btn">🌙</button>
+    </div>
   </header>
 
-  <div id="spinner">Loading...</div>
-  <div id="cards"></div>
+  <nav id="filters">
+    <input type="text" id="srch" placeholder="Search characters...">
+    <select id="hse">
+      <option value="all">All Houses</option>
+      <option value="Gryffindor">Gryffindor</option>
+      <option value="Slytherin">Slytherin</option>
+      <option value="Hufflepuff">Hufflepuff</option>
+      <option value="Ravenclaw">Ravenclaw</option>
+    </select>
+    <select id="srt">
+      <option value="az">A to Z</option>
+      <option value="za">Z to A</option>
+    </select>
+  </nav>
+
+  <main id="grid"></main>
 
   <script src="script.js"></script>
 </body>
