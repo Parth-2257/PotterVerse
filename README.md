@@ -21,11 +21,11 @@ PotterVerse is built for anyone who wants to explore the wizarding world in a fu
 | Base URL       | https://hp-api.onrender.com/api           |
 | Documentation  | https://hp-api.onrender.com               |
 | Free Tier      | Yes (no API key required)                 |
-| Data Provided  | Character names, houses, patronus, wand details, images, roles, and spell names with descriptions |
+| Data Provided  | Character names, houses, patronus, wand details, images, roles |
 
 ---
 
-## Planned Features
+## Features
 
 ### Core Features
 
@@ -42,8 +42,6 @@ PotterVerse is built for anyone who wants to explore the wizarding world in a fu
 
 - **Favourites** — Save your favourite characters locally
 - **Local Storage** — Keep your favourites and theme preference saved even after closing the browser
-- **Debounced Search** — Avoid unnecessary filtering on every single keystroke
-- **Spell Explorer** — Separate section to browse and search all spells
 
 ---
 
